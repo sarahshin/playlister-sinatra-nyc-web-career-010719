@@ -7,7 +7,13 @@ class SongsController < ApplicationController
 
   get '/songs/new' do
     @song = Song.create(params)
-    redirect "/songs/#{@song.id}"
+    # @artist = Artist.create(params[:artist])
+    if !Artist.all.include?(@song.artist)
+      Artist.create(@song.artist)
+    end
+    # binding.pry
+    erb :song_new
+
   end
 
   get '/songs/:slug' do
