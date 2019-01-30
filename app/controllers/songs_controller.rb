@@ -10,8 +10,11 @@ class SongsController < ApplicationController
     redirect "/songs/#{@song.id}"
   end
 
-  # get '/songs/:slug' do
-  #
-  # end
+  get '/songs/:slug' do
+    # binding.pry
+    @song = Song.find_by_slug(params["slug"])
+    # binding.pry
+    erb :song_show
+  end
 
 end
